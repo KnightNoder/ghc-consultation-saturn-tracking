@@ -1,4 +1,6 @@
-const getProductId = (stateObj, assessment_type) => {
+const axios = require("axios");
+
+export function getProductId (stateObj, assessment_type) {
   // const hair_current_condition = window.localStorage.getItem(
   //   "hair_current_condition"
   // );
@@ -137,7 +139,7 @@ const getProductId = (stateObj, assessment_type) => {
   // );
 };
 
-const getSendMailData = (assessment_type, stateObj, productLink = "", productName = "") => {
+export function getSendMailData (assessment_type, stateObj, productLink = "", productName = "") {
   const questionnaire = [];
 
   for (let key in stateObj) {
@@ -195,15 +197,59 @@ const getSendMailData = (assessment_type, stateObj, productLink = "", productNam
       stateObj["Select category for consultation"] == "weightloss"
         ? "Wellness"
         : stateObj["Select category for consultation"],
-    booking: stateObj["Wasn’t that easy? Would you like a free consultation?"] == "Yes, please" ? 
+    booking: stateObj["That was easy, wasn't it? Would you like a free consultation with our health experts for a more in-depth treatment plan?"] == "Yes, please" ? 
     "Free consultation" : "Free recommendation",
     image: "",
     type: process.env.REACT_APP_BRAND.toLowerCase(),
     user_survey: questionnaire,
     productLink: productLink,
-    productName: productName
+    productName: productName,
+    consultation_completion_status:"completed"
   });
 
   return data;
 };
-module.exports = { getProductId, getSendMailData };
+
+export async function createDummyLead () {
+  const state_object =  JSON.parse(window.localStorage.getItem("stateObj"));
+  console.log(state_object,'state obj')
+  const data = {
+    "firstName": state_object.Name,
+    "phone": state_object["Phone Number"],
+    "consultation_type": state_object["assessment_type"],
+    "category": state_object["Select category for consultation"],
+    "booking": state_object["Free recommendation"] || "Free recommendation",
+    "image": "",
+    "type": "mars",
+    "user_survey": [],
+    "productLink": "",
+    "productName": "",
+    "consultation_completion_status":"started"
+}
+  const config = {
+    method: "post",
+    url: `http://${process.env.REACT_APP_SEND_MAIL_API_BASE_URL}/api/device/consultation`,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+//   await fetch(`https://${process.env.REACT_APP_SEND_MAIL_API_BASE_URL}/api/device/consultation`, {
+//   method: 'POST', // or 'PUT'
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify(data),
+// })
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log('Success:', data);
+//   })
+//   .catch((error) => {
+//     console.error('Error:', error);
+//   });
+
+  const response = await axios(config);
+  console.log(response,'resp')
+}

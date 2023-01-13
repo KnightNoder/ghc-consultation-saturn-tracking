@@ -301,6 +301,7 @@ export default function App() {
         conditionMet:
           stateObj["Name"] &&
           phone_number_check(stateObj["Phone Number"]) ,
+        consultation_completion_status:"started",
         inputOptions: [
           {
             placeholder: "Eg: Jane Doe",
@@ -819,6 +820,7 @@ export default function App() {
         proceed_link: "?recommendation=yes",
         back_link: getBackPage(),
         required: "true",
+        consultation_completion_status:"completed",
         options: [
           {
             value: "Yes, please",
@@ -911,6 +913,7 @@ export default function App() {
         conditionMet:
           stateObj["Name"] &&
           phone_number_check(stateObj["Phone Number"]),
+        consultation_completion_status:"started",
         progress_bar: true,
         progress_bar_text: getProgressBarText(),
         progress_step: "22",
@@ -2598,6 +2601,7 @@ export default function App() {
         proceed_link: "?recommendation=yes",
         back_link: getBackPage(),
         required: "true",
+        consultation_completion_status:"completed",
         options: [
           {
             value: "Yes, please",
@@ -2693,6 +2697,7 @@ export default function App() {
         conditionMet:
           stateObj["Name"] &&
           phone_number_check(stateObj["Phone Number"]),
+        consultation_completion_status:"started",
         inputOptions: [
           {
             placeholder: "Eg: John Doe",
@@ -3445,6 +3450,7 @@ export default function App() {
         proceed_link: "?recommendation=yes",
         back_link: getBackPage(),
         required: "true",
+        consultation_completion_status:"completed",
         options: [
           {
             value: "Yes, please",
@@ -3555,6 +3561,7 @@ export default function App() {
         conditionMet:
           stateObj["Name"] &&
           phone_number_check(stateObj["Phone Number"]),
+        consultation_completion_status:"started",
         inputOptions: [
           {
             placeholder: "Eg: John Doe",
@@ -6296,6 +6303,7 @@ export default function App() {
         proceed_link: "?recommendation=yes",
         back_link: getBackPage(),
         required: "true",
+        consultation_completion_status:"completed",
         options: [
           {
             value: "Yes, please",
@@ -6368,6 +6376,7 @@ export default function App() {
       progress_bar,
       progress_bar_text,
       progress_step,
+      consultation_completion_status
     }) => (
       <ChoicePage
         question={question}
@@ -6392,6 +6401,7 @@ export default function App() {
         progress_bar={progress_bar}
         progress_bar_text={progress_bar_text}
         progress_step={progress_step}
+        consultation_completion_status={consultation_completion_status}
       />
     ),
     recommendation: ({ stateObj, data }) => (

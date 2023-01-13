@@ -15,7 +15,8 @@ const ProceedTemplate = ({
   productNavigate,
   productLink,
   set_url_function,
-  id
+  id,
+  consultation_completion_status
 }) => {
   return (
     <div className="proceed-container">
@@ -31,6 +32,7 @@ const ProceedTemplate = ({
           vibrateText={vibrateText}
           set_url_function={set_url_function}
           id={`back-${id}`}
+          consultation_completion_status={consultation_completion_status}
         />
       </div>
       <div className="proceed-button">
@@ -44,6 +46,7 @@ const ProceedTemplate = ({
           vibrateText={vibrateText}
           set_url_function={set_url_function}
           id={`proceed-${id}`}
+          consultation_completion_status={consultation_completion_status}
         />
       </div>
     </div>

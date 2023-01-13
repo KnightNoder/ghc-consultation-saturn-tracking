@@ -1,5 +1,6 @@
 import "../css/GenericButton.css";
 import { useNavigate } from "react-router-dom";
+import { createDummyLead } from "../common/utils";
 
 const GenericButton = ({
   text,
@@ -14,7 +15,8 @@ const GenericButton = ({
   productLink,
   set_url_function,
   id,
-}) => {
+  consultation_completion_status
+}) => { 
   const navigate = useNavigate();
   const navigateCheck = () => {
     if (directNavigate) {
@@ -29,6 +31,10 @@ const GenericButton = ({
       if (conditionMet) {
         navigate(window.location.pathname + choice);
         set_url_function(window.location.pathname + choice);
+        console.log(consultation_completion_status,'consultation status');
+        if(consultation_completion_status == 'started'){
+          createDummyLead();
+        }
       } else {
         vibrateText();
       }

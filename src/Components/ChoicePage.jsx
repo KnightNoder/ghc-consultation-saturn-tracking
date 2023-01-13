@@ -30,6 +30,7 @@ const ChoicePage = ({
   progress_bar,
   progress_bar_text,
   progress_step,
+  consultation_completion_status
 }) => {
   const [display_overlay_text, Set_display_overlay_text] = useState(true);
   const assessment_type = state_Obj["assessment_type"] == "30 sec" ? "short" : "long"
@@ -187,6 +188,7 @@ const ChoicePage = ({
               set_url_function={set_url_function}
               directNavigate={directNavigate}
               id={tracking_id}
+              consultation_completion_status={consultation_completion_status}
             />
           </div>
         </div>
@@ -203,6 +205,7 @@ const ChoicePage = ({
           set_url_function={set_url_function}
           directNavigate={directNavigate}
           id={tracking_id}
+          consultation_completion_status={consultation_completion_status}
         />
       </div>
     </>
