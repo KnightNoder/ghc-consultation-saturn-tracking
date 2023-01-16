@@ -220,7 +220,7 @@ export async function createDummyLead () {
     "category": state_object["Select category for consultation"],
     "booking": state_object["Free recommendation"] || "Free recommendation",
     "image": "",
-    "type": "mars",
+    "type": process.env.REACT_APP_BRAND.toLowerCase(),
     "user_survey": [],
     "productLink": "",
     "productName": "",
